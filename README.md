@@ -26,3 +26,9 @@ mkdir {nome_do_projeto}
 cd {nome_do_projeto}
 sls create -t aws-nodejs
 ```
+
+## Deploy
+
+```zsh
+sls deploy
+```
