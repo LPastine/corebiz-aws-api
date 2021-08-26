@@ -77,6 +77,24 @@
         "LogGroupName": "/aws/lambda/sls-dev-createLead"
       }
     },
+    "GetLeadsLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/sls-dev-getLeads"
+      }
+    },
+    "UpdateLeadLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/sls-dev-updateLead"
+      }
+    },
+    "DeleteLeadLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/sls-dev-deleteLead"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -173,7 +191,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls/dev/1630000081230-2021-08-26T17:48:01.230Z/sls.zip"
+          "S3Key": "serverless/sls/dev/1630005430145-2021-08-26T19:17:10.145Z/sls.zip"
         },
         "Handler": "handler.createLead",
         "Runtime": "nodejs12.x",
@@ -196,14 +214,134 @@
         "CreateLeadLogGroup"
       ]
     },
-    "CreateLeadLambdaVersionCDXpP8gIvJEDXgV0ghe1BN3oy5hW4M7PH2pD0UjtE": {
+    "GetLeadsLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/sls/dev/1630005430145-2021-08-26T19:17:10.145Z/sls.zip"
+        },
+        "Handler": "handler.getLeads",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "sls-dev-getLeads",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "LEADS_TABLE": "leads"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "GetLeadsLogGroup"
+      ]
+    },
+    "UpdateLeadLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/sls/dev/1630005430145-2021-08-26T19:17:10.145Z/sls.zip"
+        },
+        "Handler": "handler.updateLead",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "sls-dev-updateLead",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "LEADS_TABLE": "leads"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "UpdateLeadLogGroup"
+      ]
+    },
+    "DeleteLeadLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/sls/dev/1630005430145-2021-08-26T19:17:10.145Z/sls.zip"
+        },
+        "Handler": "handler.deleteLead",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "sls-dev-deleteLead",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "LEADS_TABLE": "leads"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "DeleteLeadLogGroup"
+      ]
+    },
+    "CreateLeadLambdaVersionRIqnhiJQqvciSLvxHrZjcb00iqTeWIyZf1hIekU449I": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateLeadLambdaFunction"
         },
-        "CodeSha256": "WiYZ6yKM5m/hRQ1hwaTJXgHrGgXuoWbhK2L4QbzjkyA="
+        "CodeSha256": "9DuC53wOU7qt2ymyIx/eselZNMCgzOLr9EDHc8OHFbI="
+      }
+    },
+    "GetLeadsLambdaVersionjL725rxtPhaCE9nbc4jg6asscDJMfuf8LL0dLpgopw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "GetLeadsLambdaFunction"
+        },
+        "CodeSha256": "9DuC53wOU7qt2ymyIx/eselZNMCgzOLr9EDHc8OHFbI="
+      }
+    },
+    "UpdateLeadLambdaVersionF0q7pRT4cymZVe92XULlSZ6FpqG7hB7hIsFcUe69Y": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "UpdateLeadLambdaFunction"
+        },
+        "CodeSha256": "9DuC53wOU7qt2ymyIx/eselZNMCgzOLr9EDHc8OHFbI="
+      }
+    },
+    "DeleteLeadLambdaVersionlJwgxvRFXOXkewQGwEp0LuPdoVTXeAoAUMJ7cCbOP4k": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "DeleteLeadLambdaFunction"
+        },
+        "CodeSha256": "9DuC53wOU7qt2ymyIx/eselZNMCgzOLr9EDHc8OHFbI="
       }
     },
     "ApiGatewayRestApi": {
@@ -228,6 +366,18 @@
           ]
         },
         "PathPart": "leads",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceLeadsIdVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceLeads"
+        },
+        "PathPart": "{id}",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -279,7 +429,145 @@
         "CreateLeadLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1630000069580": {
+    "ApiGatewayMethodLeadsGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceLeads"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "GetLeadsLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "GetLeadsLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayMethodLeadsIdVarPut": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "PUT",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceLeadsIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "UpdateLeadLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "UpdateLeadLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayMethodLeadsIdVarDelete": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "DELETE",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceLeadsIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "DeleteLeadLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "DeleteLeadLambdaPermissionApiGateway"
+      ]
+    },
+    "ApiGatewayDeployment1630005413584": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -288,7 +576,10 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodLeadsPost"
+        "ApiGatewayMethodLeadsPost",
+        "ApiGatewayMethodLeadsGet",
+        "ApiGatewayMethodLeadsIdVarPut",
+        "ApiGatewayMethodLeadsIdVarDelete"
       ]
     },
     "CreateLeadLambdaPermissionApiGateway": {
@@ -297,6 +588,117 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "CreateLeadLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "GetLeadsLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "GetLeadsLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "UpdateLeadLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateLeadLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "DeleteLeadLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "DeleteLeadLambdaFunction",
             "Arn"
           ]
         },
@@ -363,10 +765,37 @@
     "CreateLeadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateLeadLambdaVersionCDXpP8gIvJEDXgV0ghe1BN3oy5hW4M7PH2pD0UjtE"
+        "Ref": "CreateLeadLambdaVersionRIqnhiJQqvciSLvxHrZjcb00iqTeWIyZf1hIekU449I"
       },
       "Export": {
         "Name": "sls-sls-dev-CreateLeadLambdaFunctionQualifiedArn"
+      }
+    },
+    "GetLeadsLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "GetLeadsLambdaVersionjL725rxtPhaCE9nbc4jg6asscDJMfuf8LL0dLpgopw"
+      },
+      "Export": {
+        "Name": "sls-sls-dev-GetLeadsLambdaFunctionQualifiedArn"
+      }
+    },
+    "UpdateLeadLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "UpdateLeadLambdaVersionF0q7pRT4cymZVe92XULlSZ6FpqG7hB7hIsFcUe69Y"
+      },
+      "Export": {
+        "Name": "sls-sls-dev-UpdateLeadLambdaFunctionQualifiedArn"
+      }
+    },
+    "DeleteLeadLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "DeleteLeadLambdaVersionlJwgxvRFXOXkewQGwEp0LuPdoVTXeAoAUMJ7cCbOP4k"
+      },
+      "Export": {
+        "Name": "sls-sls-dev-DeleteLeadLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
