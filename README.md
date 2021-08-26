@@ -16,7 +16,7 @@ sudo npm install -g serverless
 
 ```zsh
 serverless
-serverless -- version
+serverless --version
 ```
 
 ## Configurar IAM credentials
