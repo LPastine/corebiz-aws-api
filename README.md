@@ -12,6 +12,13 @@ MacOS/Linux
 sudo npm install -g serverless
 ```
 
+## Instalar dependências
+
+```zsh
+npm install aws-sdk
+npm install uuidv4
+```
+
 ## Verificar versão e instalação
 
 ```zsh
@@ -19,7 +26,7 @@ serverless
 serverless --version
 ```
 
-## Configurar IAM credentials
+## Configurar IAM credentials em AWS
 
 1. Procurar por IAM em AWS Services
 2. Entrar em Usuários
