@@ -1,7 +1,7 @@
 'use strict';
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient({ apiVersion: '2019-11-21' });
-const uuid = require('uuid/v4');
+const { uuid } = require('uuidv4');
 
 const leadsTable = process.env.LEADS_TABLE;
 
@@ -11,8 +11,8 @@ function response(statusCode, message) {
     statusCode: statusCode,
     // headers: {
     //   "Access-Control-Allow-Headers" : "Content-Type",
-    //   "Access-Control-Allow-Origin": "https://www.example.com",
-    //   "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+    //   "Access-Control-Allow-Origin": "*",
+    //   "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PUT,DELETE"
     // },
     body: JSON.stringify(message)
   };
