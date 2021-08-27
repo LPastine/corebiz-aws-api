@@ -9,11 +9,11 @@ const leadsTable = process.env.LEADS_TABLE;
 function response(statusCode, message) {
   return {
     statusCode: statusCode,
-    // headers: {
-    //   "Access-Control-Allow-Headers" : "Content-Type",
-    //   "Access-Control-Allow-Origin": "*",
-    //   "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PUT,DELETE"
-    // },
+    headers: {
+      "Access-Control-Allow-Headers" : "Content-Type",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PUT,DELETE"
+    },
     body: JSON.stringify(message)
   };
 }
