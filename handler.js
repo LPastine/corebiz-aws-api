@@ -9,6 +9,11 @@ const leadsTable = process.env.LEADS_TABLE;
 function response(statusCode, message) {
   return {
     statusCode: statusCode,
+    // headers: {
+    //   "Access-Control-Allow-Headers" : "Content-Type",
+    //   "Access-Control-Allow-Origin": "https://www.example.com",
+    //   "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+    // },
     body: JSON.stringify(message)
   };
 }
@@ -20,22 +25,6 @@ function sortByDate(a, b) {
 // Criar um lead
 module.exports.createLead = (event, context, callback) => {
   const reqBody = JSON.parse(event.body);
-
-  if (
-    !reqBody.nome ||
-    reqBody.nome.trim() === '' ||
-    !reqBody.telefone ||
-    reqBody.telefone.trim() === '' ||
-    !reqBody.email ||
-    reqBody.email.trim() === ''
-  ) {
-    return callback(
-      null,
-      response(400, {
-        error: 'Algum dos campos foi enviado vazio'
-      })
-    );
-  }
 
   const lead = {
     id: uuid(),
