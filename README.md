@@ -58,9 +58,9 @@ sls deploy
 
 ## Endpoints da API
 
-POST - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads
-GET - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads
-PUT - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads/{id}
+POST - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads /br
+GET - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads /br
+PUT - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads/{id} /br
 DELETE - https://se3l85r4x5.execute-api.us-east-2.amazonaws.com/dev/leads/{id}
 
 ## Testar CORS
